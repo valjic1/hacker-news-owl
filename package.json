@@ -1,0 +1,58 @@
+{
+  "name": "hacker-news-owl",
+  "version": "0.0.1",
+  "description": "Shares story from Hacker News to Slack channel if story gets more than 500 upvotes",
+  "author": "Velid Aljic <velid.aljic@klika.ba>",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "test:redis": "cross-env NODE_ENV=test STORAGE_TYPE=redis mocha --exit dist/tests/index.js",
+    "test:memory": "cross-env NODE_ENV=test STORAGE_TYPE=memory mocha --exit dist/tests/index.js",
+    "test": "npm run test:redis && npm run test:memory",
+    "format": "prettier 'src/**/*.ts' --write",
+    "postinstall": "tsc",
+    "tslint": "tslint --project tsconfig.json",
+    "tsc": "tsc"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add ."
+    ]
+  },
+  "dependencies": {
+    "cron": "^1.8.2",
+    "cross-env": "^7.0.2",
+    "dotenv-safe": "^8.2.0",
+    "redis": "^3.0.2",
+    "request": "^2.88.2",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^8.3.4",
+    "@types/chai": "^4.2.11",
+    "@types/cron": "^1.7.2",
+    "@types/dotenv-safe": "^8.1.0",
+    "@types/mocha": "^7.0.2",
+    "@types/redis": "^2.8.16",
+    "@types/request": "^2.48.4",
+    "@types/sinon": "^7.5.2",
+    "@types/winston": "^2.4.4",
+    "chai": "^4.2.0",
+    "commitlint": "^8.3.5",
+    "husky": "^4.2.3",
+    "mocha": "^7.1.1",
+    "prettier": "^1.19.1",
+    "sinon": "^9.0.1",
+    "tslint": "^6.1.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.8.3"
+  }
+}
