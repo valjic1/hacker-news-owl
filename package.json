@@ -7,9 +7,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "test:redis": "cross-env NODE_ENV=test STORAGE_TYPE=redis mocha --exit dist/tests/index.js",
-    "test:memory": "cross-env NODE_ENV=test STORAGE_TYPE=memory mocha --exit dist/tests/index.js",
-    "test": "npm run test:redis && npm run test:memory",
+    "test": "cross-env NODE_ENV=test mocha --exit dist/tests/*.spec.js",
     "format": "prettier 'src/**/*.ts' --write",
     "postinstall": "tsc",
     "tslint": "tslint --project tsconfig.json",

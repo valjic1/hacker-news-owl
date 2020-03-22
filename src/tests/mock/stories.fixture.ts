@@ -1,7 +1,7 @@
-import { UPVOTE_TRESHOLD } from '../../../config/vars';
-import { IStory } from '../../../shared/story';
+import { UPVOTE_TRESHOLD } from '../../config/vars';
+import { Story } from '../../shared/story';
 
-export const stories: IStory[] = [
+export const stories: Story[] = [
   {
     by: "dhouston",
     descendants: 71,
@@ -140,50 +140,4 @@ export const stories: IStory[] = [
     url:
       "https://www.govtech.com/biz/Detailed-Audit-of-Voatz-Voting-App-Confirms-Security-Flaws.html"
   }
-];
-
-const getUpvoted = (arr: number[]) =>
-  arr.filter(storyId => {
-    const elem = stories.find(story => story.id === storyId);
-    return elem && elem.score > UPVOTE_TRESHOLD;
-  });
-
-const difference = (arr1: number[], arr2: number[]) =>
-  arr1.filter(x => !arr2.includes(x));
-
-export const populateStories = (arr: number[]) =>
-  arr.map(storyId => stories.find(story => story.id === storyId)) as IStory[];
-
-export const bestStories = [
-  [1, 2, 3, 4, 5, 6, 7],
-  [4, 5, 6, 7, 8, 9, 10],
-  [11, 12]
-];
-
-export const upvotedStories = [
-  getUpvoted(bestStories[0]),
-  getUpvoted(bestStories[1]),
-  getUpvoted(bestStories[2])
-];
-
-// New upvoted stories mocks
-
-const newUpvotedStories01: number[] = difference(upvotedStories[0], []);
-
-const newUpvotedStories02: number[] = difference(
-  upvotedStories[1],
-  newUpvotedStories01
-);
-
-const newUpvotedStories03: number[] = difference(
-  upvotedStories[2],
-  newUpvotedStories02
-);
-
-// Export
-
-export const newUpvotedStories = [
-  newUpvotedStories01,
-  newUpvotedStories02,
-  newUpvotedStories03
 ];

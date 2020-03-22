@@ -1,9 +1,7 @@
-export interface ISuccess<T> {
-  data: T;
-}
+export type Error = { error: any };
 
-export interface IError {
-  error: any;
-}
+export type Success<T> = { data: T };
 
-export type Response<T> = ISuccess<T> | IError;
+export type Response<T> = Success<T> | Error;
+
+export type AsyncResponse<T> = Promise<Response<T>>;

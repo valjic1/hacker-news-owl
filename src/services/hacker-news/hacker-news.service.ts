@@ -1,4 +1,4 @@
-import { IHackerNewsService, IStory, Stories } from '../../shared';
+import { IHackerNewsService, Story } from '../../shared';
 import { get } from '../../utils/http';
 
 /**
@@ -22,7 +22,7 @@ export class HackerNewsService implements IHackerNewsService {
    * @apiSuccess   {String}          url
    */
   getStory = (storyId: number) =>
-    get<IStory>(`https://hacker-news.firebaseio.com/v0/item/${storyId}.json`, {
+    get<Story>(`https://hacker-news.firebaseio.com/v0/item/${storyId}.json`, {
       json: true
     });
 
@@ -33,7 +33,7 @@ export class HackerNewsService implements IHackerNewsService {
    * @apiSuccess   {Array[Number]}
    */
   getBestStoriesIds = () =>
-    get<Stories>("https://hacker-news.firebaseio.com/v0/beststories.json", {
+    get<number[]>("https://hacker-news.firebaseio.com/v0/beststories.json", {
       json: true
     });
 }

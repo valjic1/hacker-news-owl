@@ -1,20 +1,29 @@
-import { IStorage, TStorageType } from '../shared/storage';
+import { ENV } from '../config/vars';
+import { IStorage, StorageType } from '../shared/storage';
 import logger from '../utils/logger';
 
+
 export class MemoryStorage implements IStorage {
-  storageType: TStorageType = "memory";
-  stories: number[];
+  storageType: StorageType = "memory";
+  stories: {
+    upvoted: number[];
+  };
 
   constructor() {
-    logger.info("App is using memory storage");
-    this.stories = [];
+    if (ENV !== "test") {
+      logger.info("App is using memory storage");
+    }
+
+    this.stories = {
+      upvoted: []
+    };
   }
 
-  async getPrevStoriesIds() {
-    return Promise.resolve(this.stories);
+  async getUpvotedStoriesIds() {
+    return Promise.resolve(this.stories.upvoted);
   }
 
-  setPrevStoriesIds(values: number[]) {
-    this.stories = values;
+  setUpvotedStoriesIds(values: number[]) {
+    this.stories.upvoted = values;
   }
 }

@@ -1,5 +1,5 @@
 import logger from './logger';
-import { Response } from '../shared/response';
+import { AsyncResponse } from '../shared/response';
 import request from 'request';
 
 const requestPromise = (
@@ -16,7 +16,7 @@ const requestPromise = (
   });
 };
 
-const execute = async <T>(options: request.Options): Promise<Response<T>> => {
+const execute = async <T>(options: request.Options): AsyncResponse<T> => {
   try {
     const { body: data } = await requestPromise(options);
     return { data };

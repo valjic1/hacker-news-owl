@@ -1,6 +1,7 @@
-import { Response } from './response';
+import { AsyncResponse } from './response';
+import { IStorage } from './storage';
 
-export interface IStory {
+export type Story = {
   by: string;
   descendants: number;
   id: number;
@@ -10,15 +11,18 @@ export interface IStory {
   title: string;
   type: "story";
   url: string;
-}
-
-// Array containing story ids
-export type Stories = number[];
-
-export type TGetStory = (storyId: number) => Promise<Response<IStory>>;
-export type TGetStories = () => Promise<Response<Stories>>;
+};
 
 export interface IHackerNewsService {
-  getStory: TGetStory;
-  getBestStoriesIds: TGetStories;
+  getStory: (storyId: number) => AsyncResponse<Story>;
+  getBestStoriesIds: () => AsyncResponse<number[]>;
+}
+
+export interface IStoryClient {
+  storage: IStorage;
+  service: IHackerNewsService;
+  upvoteTreshold: number;
+
+  getUpvotedStories: () => Promise<Story[]>;
+  getNewUpvotedStories: () => Promise<Story[]>;
 }

@@ -1,7 +1,7 @@
-export type TStorageType = "redis" | "memory";
+export type StorageType = "redis" | "memory";
 
 export interface IStorage {
-  storageType: TStorageType;
-  getPrevStoriesIds: () => Promise<number[]>;
-  setPrevStoriesIds: (values: number[]) => void;
+  storageType: StorageType;
+  getUpvotedStoriesIds: () => Promise<number[]>;
+  setUpvotedStoriesIds: (values: number[]) => void;
 }
