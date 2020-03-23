@@ -10,15 +10,12 @@ export class RedisStorage implements IStorage {
 
   constructor(redisUrl: string) {
     this.client = redis.createClient(redisUrl);
+    this.UPVOTED_STORIES_KEY =
+      ENV === "test" ? "UPVOTED_STORIES_TEST" : "UPVOTED_STORIES_KEY";
 
     this.client.on("connect", () => {
-      if (ENV === "test") {
-        // Empty storage before executing test
-        this.UPVOTED_STORIES_KEY = "UPVOTED_STORIES_TEST";
-        this.deleteItem(this.UPVOTED_STORIES_KEY);
-      } else {
+      if (ENV !== "test") {
         logger.info("App is using redis storage");
-        this.UPVOTED_STORIES_KEY = "UPVOTED_STORIES_KEY";
       }
     });
 
@@ -47,6 +44,10 @@ export class RedisStorage implements IStorage {
 
   deleteItem(key: string) {
     this.client.del(key);
+  }
+
+  async clearUpvotedStoriesIds() {
+    this.deleteItem(this.UPVOTED_STORIES_KEY);
   }
 
   async getUpvotedStoriesIds() {

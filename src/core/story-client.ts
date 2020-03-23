@@ -33,34 +33,30 @@ export class StoryClient implements IStoryClient {
    * @returns {Promise<Story[]>}
    */
   getUpvotedStories = async (): Promise<Story[]> => {
-    try {
-      const bestStoriesIds = await this.service.getBestStoriesIds();
+    const bestStoriesIds = await this.service.getBestStoriesIds();
 
-      if ((bestStoriesIds as Error).error) {
-        throw new Error("Error while fetching best stories from HN");
-      }
-
-      const promises = (bestStoriesIds as Success<number[]>).data.map(storyId =>
-        this.service.getStory(storyId)
-      );
-
-      return new Promise(resolve => {
-        Promise.all(promises.map(p => p.catch(e => e))).then(
-          (bestStories: Response<Story>[]) =>
-            resolve(
-              bestStories
-                .filter(story => !(story as Error).error)
-                .map(story => (story as Success<Story>).data)
-                .filter(
-                  ({ id, score, title, url }) =>
-                    id && url && title && score > this.upvoteTreshold
-                )
-            )
-        );
-      });
-    } catch (error) {
+    if ((bestStoriesIds as Error).error) {
       return [];
     }
+
+    const promises = (bestStoriesIds as Success<number[]>).data.map(storyId =>
+      this.service.getStory(storyId)
+    );
+
+    return new Promise(resolve => {
+      Promise.all(promises.map(p => p.catch(e => e))).then(
+        (bestStories: Response<Story>[]) =>
+          resolve(
+            bestStories
+              .filter(story => !(story as Error).error)
+              .map(story => (story as Success<Story>).data)
+              .filter(
+                ({ id, score, title, url }) =>
+                  id && url && title && score > this.upvoteTreshold
+              )
+          )
+      );
+    });
   };
 
   /**

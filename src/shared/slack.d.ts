@@ -1,9 +1,9 @@
 import { Story } from './story';
 
 export type SlackMessage = {
-  type: string;
+  type: "section" | "divider";
   text?: {
-    type: string;
+    type: "mrkdwn";
     text: string;
   };
 };

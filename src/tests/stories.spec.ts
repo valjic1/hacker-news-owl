@@ -1,10 +1,9 @@
-import { stories } from './mock/stories.fixture';
+import { stories as storiesMock } from './mock/stories.fixture';
 import { storiesTestUtilFactory } from './stories.util';
 import { REDIS_URL, UPVOTE_TRESHOLD } from '../config/vars';
 import { StoryClient } from '../core/story-client';
 import { HackerNewsMockService } from '../services/hacker-news/hacker-news.mock.service';
-import { AsyncResponse } from '../shared';
-import { IStorage } from '../shared/storage';
+import { AsyncResponse, IStorage, Story } from '../shared';
 import { MemoryStorage } from '../storage/memory';
 import { RedisStorage } from '../storage/redis';
 import { expect } from 'chai';
@@ -12,7 +11,7 @@ import { createSandbox } from 'sinon';
 
 const sandbox = createSandbox();
 
-const testNewUpvotedStories = async (
+const testNewUpvotedStories = ((stories: Story[]) => async (
   bestStoriesIdsArray: number[][],
   getBestStoriesIds: () => AsyncResponse<number[]>,
   storage: IStorage
@@ -22,7 +21,7 @@ const testNewUpvotedStories = async (
     getBestStoriesIds
   );
 
-  const storiesService = new StoryClient(
+  const storyClient = new StoryClient(
     storage,
     hackerNewsService,
     UPVOTE_TRESHOLD as number
@@ -35,13 +34,13 @@ const testNewUpvotedStories = async (
   );
 
   for (const storiesIds of storiesTestUtil.newUpvotedStoriesIdsArray) {
-    const newUpvotedStories = await storiesService.getNewUpvotedStories();
+    const newUpvotedStories = await storyClient.getNewUpvotedStories();
 
     expect(newUpvotedStories).to.deep.equal(
       storiesTestUtil.populateStories(storiesIds)
     );
   }
-};
+})(storiesMock);
 
 // tslint:disable only-arrow-functions
 describe(`Get freshy upvoted stories from Hacker News with more than ${UPVOTE_TRESHOLD} upvotes`, () => {
@@ -92,13 +91,13 @@ describe(`Get freshy upvoted stories from Hacker News with more than ${UPVOTE_TR
       this.skip();
     } else {
       const storage = new RedisStorage(REDIS_URL);
-      setTimeout(async () => {
-        await testNewUpvotedStories(
-          bestStoriesIdsArray,
-          getBestStoriesIds,
-          storage
-        );
-      }, 100);
+      await storage.clearUpvotedStoriesIds();
+
+      await testNewUpvotedStories(
+        bestStoriesIdsArray,
+        getBestStoriesIds,
+        storage
+      );
     }
   });
 
@@ -147,13 +146,13 @@ describe(`Get freshy upvoted stories from Hacker News with more than ${UPVOTE_TR
       this.skip();
     } else {
       const storage = new RedisStorage(REDIS_URL);
-      setTimeout(async () => {
-        await testNewUpvotedStories(
-          bestStoriesIdsArray,
-          getBestStoriesIds,
-          storage
-        );
-      }, 100);
+      await storage.clearUpvotedStoriesIds();
+
+      await testNewUpvotedStories(
+        bestStoriesIdsArray,
+        getBestStoriesIds,
+        storage
+      );
     }
   });
 });
