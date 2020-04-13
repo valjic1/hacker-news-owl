@@ -5,3 +5,49 @@
 ## Description
 
 Shares story from Hacker News to Slack channel if story gets more than 500 upvotes.
+
+## Install
+
+Install packages:
+
+```bash
+npm install
+```
+
+Transpile ES6 modules into commonJS modules:
+
+```bash
+npm run build
+```
+
+## Running application
+
+Create and populate `.env` file with corresponding example values from `.env.example` file
+
+```bash
+# Node environment
+NODE_ENV=production
+
+# Storage type for holding current top news
+# Available options: "memory" | "redis"
+STORAGE_TYPE=redis
+
+# Redis connection url
+REDIS_URL=redis://127.0.0.1:6379
+
+# Upvote treshold after which the story will be posted to slack channel
+UPVOTE_TRESHOLD=500
+
+# Refresh interval in minutes after which new stories will be fetched
+REFRESH_INTERVAL_MINUTES=10
+
+# Your hook url obtained from app registered in dedicated Slack workspace
+# Stories will be posted to channel associated with this hook
+HOOK_URL=https://hooks.slack.com/services/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
+```
+
+Run application with:
+
+```bash
+npm start
+```

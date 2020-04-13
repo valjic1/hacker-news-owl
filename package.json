@@ -7,11 +7,11 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
+    "build": "tsc",
     "test": "cross-env NODE_ENV=test mocha --exit dist/tests/*.spec.js",
     "format": "prettier 'src/**/*.ts' --write",
-    "postinstall": "tsc",
-    "tslint": "tslint --project tsconfig.json",
-    "tsc": "tsc"
+    "postinstall": "npm run build",
+    "tslint": "tslint --project tsconfig.json"
   },
   "husky": {
     "hooks": {
