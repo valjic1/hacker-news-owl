@@ -6,19 +6,16 @@
 
 Shares story from Hacker News to Slack channel if story gets more than 500 upvotes.
 
-## Install
+## Build
 
-Install packages:
+You have to have nodejs installed before running following commands.
 
 ```bash
 npm install
-```
-
-Transpile ES6 modules into commonJS modules:
-
-```bash
 npm run build
 ```
+
+The distribution packages will be stored in dist folder.
 
 ## Running application
 
