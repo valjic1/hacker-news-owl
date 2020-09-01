@@ -3,7 +3,7 @@ import {
   IHackerNewsService,
   Story,
   Success
-  } from '../../shared';
+} from "../../shared";
 
 /**
  * @name HackerNewsMockService

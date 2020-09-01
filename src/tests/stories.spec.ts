@@ -1,13 +1,13 @@
-import { stories as storiesMock } from './mock/stories.fixture';
-import { storiesTestUtilFactory } from './stories.util';
-import { REDIS_URL, UPVOTE_TRESHOLD } from '../config/vars';
-import { StoryClient } from '../core/story-client';
-import { HackerNewsMockService } from '../services/hacker-news/hacker-news.mock.service';
-import { AsyncResponse, IStorage, Story } from '../shared';
-import { MemoryStorage } from '../storage/memory';
-import { RedisStorage } from '../storage/redis';
-import { expect } from 'chai';
-import { createSandbox } from 'sinon';
+import { stories as storiesMock } from "./mock/stories.fixture";
+import { storiesTestUtilFactory } from "./stories.util";
+import { REDIS_URL, UPVOTE_TRESHOLD } from "../config/vars";
+import { StoryClient } from "../core/story-client";
+import { HackerNewsMockService } from "../services/hacker-news/hacker-news.mock.service";
+import { AsyncResponse, IStorage, Story } from "../shared";
+import { MemoryStorage } from "../storage/memory";
+import { RedisStorage } from "../storage/redis";
+import { expect } from "chai";
+import { createSandbox } from "sinon";
 
 const sandbox = createSandbox();
 

@@ -1,6 +1,6 @@
-import { StorageType } from '../shared';
-import { config } from 'dotenv-safe';
-import path from 'path';
+import { StorageType } from "../shared";
+import { config } from "dotenv-safe";
+import path from "path";
 
 config({
   allowEmptyValues: true,

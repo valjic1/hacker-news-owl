@@ -1,5 +1,5 @@
-import { UPVOTE_TRESHOLD } from '../../config/vars';
-import { Story } from '../../shared/story';
+import { UPVOTE_TRESHOLD } from "../../config/vars";
+import { Story } from "../../shared/story";
 
 export const stories: Story[] = [
   {

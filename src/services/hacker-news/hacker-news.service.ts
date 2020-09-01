@@ -1,5 +1,5 @@
-import { IHackerNewsService, Story } from '../../shared';
-import { get } from '../../utils/http';
+import { IHackerNewsService, Story } from "../../shared";
+import { get } from "../../utils/http";
 
 /**
  * @name HackerNewsService

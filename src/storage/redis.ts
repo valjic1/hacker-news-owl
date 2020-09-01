@@ -1,7 +1,7 @@
-import { ENV } from '../config/vars';
-import { IStorage, StorageType } from '../shared/storage';
-import logger from '../utils/logger';
-import redis from 'redis';
+import { ENV } from "../config/vars";
+import { IStorage, StorageType } from "../shared/storage";
+import logger from "../utils/logger";
+import redis from "redis";
 
 export class RedisStorage implements IStorage {
   client: redis.RedisClient;

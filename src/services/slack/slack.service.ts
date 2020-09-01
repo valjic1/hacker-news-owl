@@ -1,6 +1,6 @@
-import { HOOK_URL } from '../../config/vars';
-import { ISlackService, SlackMessage } from '../../shared/slack';
-import { post } from '../../utils/http';
+import { HOOK_URL } from "../../config/vars";
+import { ISlackService, SlackMessage } from "../../shared/slack";
+import { post } from "../../utils/http";
 
 export class SlackService implements ISlackService {
   /**

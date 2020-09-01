@@ -1,9 +1,4 @@
-import {
-  ISlackClient,
-  ISlackService,
-  SlackMessage,
-  Story
-  } from '../shared/';
+import { ISlackClient, ISlackService, SlackMessage, Story } from "../shared/";
 
 export class SlackClient implements ISlackClient {
   public service: ISlackService;

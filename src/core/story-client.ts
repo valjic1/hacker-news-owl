@@ -6,7 +6,7 @@ import {
   Response,
   Story,
   Success
-  } from '../shared/';
+} from "../shared/";
 
 export class StoryClient implements IStoryClient {
   storage: IStorage;

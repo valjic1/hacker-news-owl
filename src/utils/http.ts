@@ -1,6 +1,6 @@
-import logger from './logger';
-import { AsyncResponse } from '../shared/response';
-import request from 'request';
+import logger from "./logger";
+import { AsyncResponse } from "../shared/response";
+import request from "request";
 
 const requestPromise = (
   options: request.Options

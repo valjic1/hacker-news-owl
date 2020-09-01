@@ -1,10 +1,5 @@
-import { ENV } from '../config/vars';
-import {
-  createLogger,
-  format,
-  Logger,
-  transports
-  } from 'winston';
+import { ENV } from "../config/vars";
+import { createLogger, format, Logger, transports } from "winston";
 
 const logger: Logger = createLogger({
   level: "info",

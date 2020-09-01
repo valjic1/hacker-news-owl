@@ -1,5 +1,5 @@
-import { AsyncResponse } from './response';
-import { IStorage } from './storage';
+import { AsyncResponse } from "./response";
+import { IStorage } from "./storage";
 
 export type Story = {
   by: string;

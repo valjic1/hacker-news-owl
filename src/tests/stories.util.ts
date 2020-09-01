@@ -1,4 +1,4 @@
-import { Story } from '../shared/story';
+import { Story } from "../shared/story";
 
 const difference = (newStoriesIds: number[], prevStoriesIds: number[]) =>
   newStoriesIds.filter(x => !prevStoriesIds.includes(x));

@@ -1,4 +1,4 @@
-import { Story } from './story';
+import { Story } from "./story";
 
 export type SlackMessage = {
   type: "section" | "divider";

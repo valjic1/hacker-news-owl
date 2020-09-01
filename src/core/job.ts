@@ -1,10 +1,10 @@
-import { SlackClient } from './slack-client';
-import { StoryClient } from './story-client';
-import { REFRESH_INTERVAL_MINUTES, UPVOTE_TRESHOLD } from '../config/vars';
-import hackerNewsService from '../services/hacker-news/hacker-news.service';
-import slackService from '../services/slack/slack.service';
-import storage from '../storage/';
-import { CronJob } from 'cron';
+import { SlackClient } from "./slack-client";
+import { StoryClient } from "./story-client";
+import { REFRESH_INTERVAL_MINUTES, UPVOTE_TRESHOLD } from "../config/vars";
+import hackerNewsService from "../services/hacker-news/hacker-news.service";
+import slackService from "../services/slack/slack.service";
+import storage from "../storage/";
+import { CronJob } from "cron";
 
 const slackClient = new SlackClient(slackService);
 
