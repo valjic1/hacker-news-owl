@@ -4,7 +4,7 @@
 
 ## Description
 
-Share popular stories from Hacker News to Slack.
+Share popular stories from Hacker News to Slack
 
 ## Build
 
