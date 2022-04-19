@@ -1,7 +1,7 @@
 {
   "name": "hacker-news-owl",
   "version": "0.0.1",
-  "description": "Shares story from Hacker News to Slack channel if story gets more than 500 upvotes",
+  "description": "Share popular stories from Hacker News to Slack",
   "author": "Velid Aljic <velid.aljic@protonmail.com>",
   "license": "ISC",
   "main": "dist/index.js",
